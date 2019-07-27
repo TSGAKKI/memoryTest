@@ -30,8 +30,8 @@ public class MemoryTest extends JFrame implements ActionListener {
     private Block[] block;
     private ImageIcon[] icon;
     private MemoryTestPane memoryTestPane;
-    private int x=6;
-    private int y=5;
+    private int x=5;
+    private int y=6;
     private int iconCount=0;
     private JTextField jText;
 	public MemoryTest() {
@@ -51,8 +51,8 @@ public class MemoryTest extends JFrame implements ActionListener {
 		      for (int i = 0; i < block.length; i++) {
 		        block[i] = new Block();
 		 }
-		      icon=new ImageIcon[y];
-		for (int i = 0; i <y; i++) {
+		      icon=new ImageIcon[x];
+		for (int i = 0; i <x; i++) {
 			
 			icon[i]=new ImageIcon(MemoryTest.class.getResource("img/a" + i + ".jpg"));
 		}
@@ -77,7 +77,22 @@ public class MemoryTest extends JFrame implements ActionListener {
 		setVisible(true);
 		
 	}
-	public void changeLevel() {
+	public void changeLevel(int x,int y) {
+		
+		block = new Block[x * y];
+        for (int i = 0; i < block.length; i++) {
+        block[i] = new Block();
+ }
+        icon=new ImageIcon[x];
+        for (int i = 0; i <x; i++) {
+        	icon[i]=new ImageIcon(MemoryTest.class.getResource("img/a" + i + ".jpg"));
+        	}
+        remove(memoryTestPane);
+memoryTestPane=new MemoryTestPane(block, icon, x, y);
+		
+		
+		add(memoryTestPane);
+		validate();
 		
 	}
 	@Override
@@ -85,60 +100,23 @@ public class MemoryTest extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource()==easyLevel)
 			
-		{	remove(memoryTestPane);
-			x=6;
-			y=5;
-			block = new Block[x * y];
-	        for (int i = 0; i < block.length; i++) {
-	        block[i] = new Block();
-	 }
-	        icon=new ImageIcon[y];
-	        for (int i = 0; i <y; i++) {
-	        	icon[i]=new ImageIcon(MemoryTest.class.getResource("img/a" + i + ".jpg"));
-	        	}
-	memoryTestPane=new MemoryTestPane(block, icon, x, y);
-			jText.setText("当前模式初级");
-			add(memoryTestPane);
-			
-			setBounds(200, 200, 500, 500);
-			
+		{	
+			changeLevel(5, 6);
+			jText.setText("当前模式初级: 找到6个");
+			this.setBounds(200, 200, 500, 500);
 	
 		}
 		else if (e.getSource()==nomalLevel)
 		{
-			remove(memoryTestPane);
-			x=6;
-			y=6;
-			block = new Block[x * y];
-	        for (int i = 0; i < block.length; i++) {
-	        block[i] = new Block();
-	 }
-	        icon=new ImageIcon[y];
-	        for (int i = 0; i <y; i++) {
-	        	icon[i]=new ImageIcon(MemoryTest.class.getResource("img/a" + i + ".jpg"));
-	        	}
-	memoryTestPane=new MemoryTestPane(block, icon, x, y);
-			jText.setText("当前模式中级");
-			add(memoryTestPane);
-			setBounds(200, 200, 500, 600);
+			changeLevel(6, 7);
+			jText.setText("当前模式中级: 找到7个");
+			setBounds(200, 200, 600, 600);
 		}
 		else if(e.getSource()==hardLevel)
 		{
-			remove(memoryTestPane);
-			x=6;
-			y=7;
-			block = new Block[x * y];
-	        for (int i = 0; i < block.length; i++) {
-	        block[i] = new Block();
-	 }
-	        icon=new ImageIcon[y];
-	        for (int i = 0; i <y; i++) {
-	        	icon[i]=new ImageIcon(MemoryTest.class.getResource("img/a" + i + ".jpg"));
-	        	}
-	memoryTestPane=new MemoryTestPane(block, icon, x, y);
-			jText.setText("当前模式高级");
-			add(memoryTestPane);
-			setBounds(200, 200, 500, 700);
+			changeLevel(7, 8);
+			jText.setText("当前模式高级: 找到8个");
+			setBounds(200, 200, 700, 700);
 		}
 	}
 	public static void main(String[] args) {

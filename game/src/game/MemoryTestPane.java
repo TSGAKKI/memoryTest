@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class MemoryTestPane extends JPanel implements ActionListener{
 		     
 		  JPanel center = new JPanel();
 		     
-		     center.setLayout(new GridLayout(y, x));
+		     center.setLayout(new GridLayout(x, y));
 		     
 		      for (int i = 0; i < block.length; i++) {
 	       center.add(block[i]);
@@ -87,34 +88,30 @@ public class MemoryTestPane extends JPanel implements ActionListener{
 		    
 		      add(south, "South");
 		     
-		      randomSetIcons(block, icon);
+		      randomSetIcons(block, icon,y);
 		     
 		     timer = new Timer(1000,this);
 		     
 		     timerIsStar = false;
 	
 	}
-	public void randomSetIcons(Block[] block, ImageIcon[] icon) {//顺序执行block给顺序的block随机赋值
-		     List<Integer> list = new ArrayList<Integer>();
+	public void randomSetIcons(Block[] block, ImageIcon[] icon,int y) {//顺序执行block给顺序的block随机赋值
+		//Collections.shuffle(list);    
+		//或者在一个数组内经行一个顺序数组乱序1-30,
+		
+		List<Integer> list = new ArrayList<Integer>();
 	    
-		    int n = icon.length;
-		    
-	     for (int i = 0; i < block.length; i++) {
-	      
-	      int x = i % n;
-	       
-		       list.add(Integer.valueOf(x));
-   } 
-     
-	    for (int i = 0; i < block.length; i++) {
-	      
-    int m = (int)(Math.random() * list.size());//产生0-size-1的随机数
-	     
-	    int x = ((Integer)list.get(m)).intValue();
-	     
-	       block[i].setOpenedIcon(icon[x]);
-		      list.remove(m);//不会再取到M位置的图片
-		    } 
+		 for (int i = 0; i < icon.length; i++) {
+			 for (int j = 0; j < y; j++) {
+				list.add(i);
+			}
+		}
+		 Collections.shuffle(list);
+		
+		 for (int i = 0; i < list.size(); i++) {
+			block[i].setOpenedIcon(icon[list.get(i)]);;
+		
+		}
 		  }
 		
 	
