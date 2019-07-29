@@ -31,7 +31,7 @@ public class RegisterView extends JPanel implements ActionListener {
 		buttonRegister=new JButton("注册");
 		add(new JLabel("ID"));
 		add(inputID);
-		add(new JLabel("病人编号(3位随机数)"));
+		add(new JLabel("编号(3位随机数)"));
 		add(inputBRBH);
 		add(new JLabel("密码"));
 		add(inputPassword);

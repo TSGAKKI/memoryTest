@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -115,28 +116,48 @@ memoryTestPane=new MemoryTestPane(block, icon, x, y);
 		
 	}
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)  {
 		// TODO Auto-generated method stub
 		
 		if(e.getSource()==Allrank) {
 			ranklist show=new ranklist();
-			showrankList showrank=new showrankList(show.getrankArray());
+			try {
+				showrankList showrank=new showrankList(null);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			//System.out.println(show.getrankArray());
 		}
 		
 		else if(e.getSource()==easyrank) {
 			ranklist show=new ranklist(0);
-			showrankList showrank=new showrankList(show.getrankArray());
+			try {
+				showrankList showrank=new showrankList("³õ");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			//System.out.println(show.getrankArray());
 		}
 		else if(e.getSource()==nomalrank) {
 			ranklist show=new ranklist(1);
-			showrankList showrank=new showrankList(show.getrankArray());
+			try {
+				showrankList showrank=new showrankList("ÖÐ");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			//System.out.println(show.getrankArray());
 		}
 		else if(e.getSource()==hardrank) {
 			ranklist show=new ranklist(2);
-			showrankList showrank=new showrankList(show.getrankArray());
+			try {
+				showrankList showrank=new showrankList("¸ß");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			//System.out.println(show.getrankArray());
 		}
 		if(e.getSource()==easyLevel)

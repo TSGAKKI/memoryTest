@@ -5,8 +5,12 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,12 +23,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
+import game.Act.Query;
+
 public class MemoryTestPane extends JPanel implements ActionListener {
 	private JMenuBar bar;
 	private JMenu fileMenu;
 	private JMenuItem easyLevel;
 	private JMenuItem nomalLevel;
 	private JMenuItem hardLevel;
+	private Date d=new Date();
+	private DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 	Block block[];
 	ImageIcon icon[];
 	LinkedList blockList, iconList;
@@ -160,6 +168,33 @@ public class MemoryTestPane extends JPanel implements ActionListener {
 							Block b = (Block) this.blockList.get(i);
 
 							b.setDisabledIcon(b.getOpenedIcon());
+						}
+						if(y==6) {
+							try {
+								new Query("Insert into T_Rank values "+"("+"'"+format1.format(d)+"'"+",'111'"
+							+","+"'"+time+"'"+","+"'"+"初"+"')").InsertDat();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						else if(y==7) {
+							try {
+								new Query("Insert into T_Rank values "+"("+"'"+format1.format(d)+"'"+",'111'"
+										+","+"'"+time+"'"+","+"'"+"中"+"')").InsertDat();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						else if(y==8) {
+							try {
+								new Query("Insert into T_Rank values "+"("+"'"+format1.format(d)+"'"+",'111'"
+										+","+"'"+time+"'"+","+"'"+"高"+"')").InsertDat();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						}
 						this.timer.stop();
 						new ShowRecord(time);
