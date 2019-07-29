@@ -7,12 +7,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Block extends JButton implements ActionListener {
-
+	
 	private ImageIcon openedIcon;
 	
 	public Block() {
 		//grid
 		addActionListener(this);
+	
 	}
 	
 //	 public void setIcon(ImageIcon icon) { setIcon(icon); }
@@ -28,6 +29,7 @@ public class Block extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		System.out.println("second");
 		setIcon(getOpenedIcon());
 	}
 
